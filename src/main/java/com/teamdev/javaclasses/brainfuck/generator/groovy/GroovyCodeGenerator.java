@@ -3,17 +3,35 @@ package com.teamdev.javaclasses.brainfuck.generator.groovy;
 import com.teamdev.javaclasses.brainfuck.Command;
 import com.teamdev.javaclasses.brainfuck.command.*;
 import com.teamdev.javaclasses.brainfuck.generator.CodeGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class GroovyCodeGenerator implements CodeGenerator {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(GroovyCodeGenerator.class);
+
     private StringBuilder builder = new StringBuilder("");
 
     @Override
     public String execute(List<Command> commands) {
+
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Commands executing started");
+        }
+
         for (Command command : commands) {
+
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Executing command: " + command.getClass());
+            }
+
             command.accept(this);
+        }
+
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Commands executing finished");
         }
 
         return builder.toString();

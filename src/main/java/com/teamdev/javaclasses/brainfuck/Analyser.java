@@ -1,12 +1,20 @@
 package com.teamdev.javaclasses.brainfuck;
 
 import com.teamdev.javaclasses.brainfuck.command.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public class Analyser {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Analyser.class);
+
         public List<Command> parseProgram(String program) {
+
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Program parsing started");
+            }
 
             if (program == null || program.trim().isEmpty()) {
                 throw new IllegalArgumentException("Program is empty");
@@ -17,6 +25,10 @@ public class Analyser {
             stack.push(new ArrayList<>());
 
             for (char commandSymbol : program.toCharArray()) {
+
+                if (LOGGER.isInfoEnabled()) {
+                    LOGGER.info("Analysing symbol: " + commandSymbol);
+                }
 
                 switch (commandSymbol) {
 
@@ -65,6 +77,10 @@ public class Analyser {
 
                 throw new IllegalStateException("Some loop is not closed!");
 
+            }
+
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Program parsing ended");
             }
 
             return stack.pop();

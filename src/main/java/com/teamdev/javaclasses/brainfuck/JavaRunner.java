@@ -1,12 +1,16 @@
 package com.teamdev.javaclasses.brainfuck;
 
 import com.teamdev.javaclasses.brainfuck.command.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
 public class JavaRunner implements CommandVisitor {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(JavaRunner.class);
 
     private Memory memory;
     private OutputStream stream;
@@ -21,8 +25,22 @@ public class JavaRunner implements CommandVisitor {
     }
 
     public void execute(List<Command> commands) {
+
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Commands executing started");
+        }
+
         for (Command command : commands) {
+
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Executing command: " + command.getClass());
+            }
+
             command.accept(this);
+        }
+
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Commands executing finished");
         }
     }
 
@@ -60,8 +78,17 @@ public class JavaRunner implements CommandVisitor {
     @Override
     public void visit(LoopCommand command) {
         while (memory.getCurrentCellValue() > 0) {
+
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Running commands in the loop");
+            }
+
             for (Command innerCommand : command.getCommands()) {
                 innerCommand.accept(this);
+            }
+
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("LoopCommand executing ended");
             }
         }
     }

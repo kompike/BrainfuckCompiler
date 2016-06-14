@@ -7,6 +7,8 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +19,14 @@ import java.util.Map;
 
 public class TemplateGeneratorUtils {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(TemplateGeneratorUtils.class);
+
     public Writer createFile(Configuration configuration, Map<String, String> map, String fileDir, String templateName) {
+
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("File creation started");
+        }
+
         final Template template;
         Writer file = null;
 
@@ -39,10 +48,18 @@ public class TemplateGeneratorUtils {
             }
         }
 
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Commands optimization ended");
+        }
+
         return file;
     }
 
     public Configuration getConfiguration(String templateDir) {
+
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Getting freemarker configuration");
+        }
 
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_23);
         try {
@@ -54,16 +71,28 @@ public class TemplateGeneratorUtils {
         configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         configuration.setLogTemplateExceptions(false);
 
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Configuration is ready");
+        }
+
         return configuration;
     }
 
     public String analyzeText(CodeGenerator generator, String text) {
+
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Analyzing and optimizing text");
+        }
 
         final Analyser analyser = new Analyser();
         final List<Command> commands = analyser.parseProgram(text);
 
         final Optimizer optimizer = new Optimizer();
         final List<Command> optimizedList = optimizer.optimize(commands);
+
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Text analysis and optimization ended");
+        }
 
         return generator.execute(optimizedList);
     }
