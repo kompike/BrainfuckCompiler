@@ -49,7 +49,7 @@ public class TemplateGeneratorUtils {
         }
 
         if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Commands optimization ended");
+            LOGGER.info("File creation ended");
         }
 
         return file;

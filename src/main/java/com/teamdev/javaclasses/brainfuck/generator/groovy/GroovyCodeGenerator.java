@@ -23,8 +23,8 @@ public class GroovyCodeGenerator implements CodeGenerator {
 
         for (Command command : commands) {
 
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Executing command: " + command.getClass());
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Executing command: " + command.getClass().getSimpleName());
             }
 
             command.accept(this);

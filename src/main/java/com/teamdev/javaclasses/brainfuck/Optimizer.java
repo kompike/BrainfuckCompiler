@@ -20,6 +20,11 @@ public class Optimizer implements CommandVisitor {
         }
 
         for (Command command : commands) {
+
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Executing command: " + command.getClass().getSimpleName());
+            }
+
             command.accept(this);
         }
 
