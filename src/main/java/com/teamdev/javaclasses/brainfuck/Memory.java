@@ -11,6 +11,10 @@ public class Memory {
         this.cells = new int[size];
     }
 
+    public int getPointer() {
+        return pointer;
+    }
+
     public int getCurrentCellValue() {
         return cells[pointer];
     }

@@ -11,6 +11,10 @@ public class JavaRunner implements CommandVisitor {
     private Memory memory;
     private OutputStream stream;
 
+    public Memory getMemory() {
+        return memory;
+    }
+
     public JavaRunner(Memory memory, OutputStream stream) {
         this.memory = memory;
         this.stream = stream;

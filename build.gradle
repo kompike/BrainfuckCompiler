@@ -1,9 +1,13 @@
 apply plugin: 'java'
+apply plugin: 'groovy'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    compile 'org.slf4j:slf4j-simple:1.7.21'
+    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile 'org.freemarker:freemarker:2.3.23'
     testCompile 'junit:junit:4.12'
 }

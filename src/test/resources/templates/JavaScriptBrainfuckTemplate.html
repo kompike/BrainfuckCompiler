@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<body onload="execute()">
+
+<p>Brainfuck to JavaScropt compiler on Java</p>
+
+<p id="compiler"></p>
+
+<script>
+function execute() {
+    var memory = new Array(100);
+    var pointer = 0;
+    var result = '';
+    for (var i=0; i < memory.length; i++){
+        memory[i] = 0;
+    }
+
+    	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	while(memory[pointer] > 0) {
+	pointer++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	while(memory[pointer] > 0) {
+	pointer++;
+	memory[pointer]++;
+	memory[pointer]++;
+	pointer++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	pointer++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	pointer++;
+	memory[pointer]++;
+	pointer--;
+	pointer--;
+	pointer--;
+	pointer--;
+	memory[pointer]--;
+}
+	pointer++;
+	memory[pointer]++;
+	pointer++;
+	memory[pointer]++;
+	pointer++;
+	memory[pointer]--;
+	pointer++;
+	pointer++;
+	memory[pointer]++;
+	while(memory[pointer] > 0) {
+	pointer--;
+}
+	pointer--;
+	memory[pointer]--;
+}
+	pointer++;
+	pointer++;
+	result += String.fromCharCode(memory[pointer]);
+	pointer++;
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	result += String.fromCharCode(memory[pointer]);
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	result += String.fromCharCode(memory[pointer]);
+	result += String.fromCharCode(memory[pointer]);
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	result += String.fromCharCode(memory[pointer]);
+	pointer++;
+	pointer++;
+	result += String.fromCharCode(memory[pointer]);
+	pointer--;
+	memory[pointer]--;
+	result += String.fromCharCode(memory[pointer]);
+	pointer--;
+	result += String.fromCharCode(memory[pointer]);
+	memory[pointer]++;
+	memory[pointer]++;
+	memory[pointer]++;
+	result += String.fromCharCode(memory[pointer]);
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	result += String.fromCharCode(memory[pointer]);
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	memory[pointer]--;
+	result += String.fromCharCode(memory[pointer]);
+	pointer++;
+	pointer++;
+	memory[pointer]++;
+	result += String.fromCharCode(memory[pointer]);
+	pointer++;
+	memory[pointer]++;
+	memory[pointer]++;
+	result += String.fromCharCode(memory[pointer]);
+
+
+    return result;
+}
+
+document.getElementById("compiler").innerHTML = execute();
+</script>
+
+</body>
+</html>

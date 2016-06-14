@@ -1,7 +1,6 @@
 package com.teamdev.javaclasses.brainfuck;
 
-import com.teamdev.javaclasses.brainfuck.command.IncrementCommand;
-import com.teamdev.javaclasses.brainfuck.command.LoopCommand;
+import com.teamdev.javaclasses.brainfuck.command.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,6 +18,34 @@ public class AnalyserTest {
         final List<Command> commands = ANALYSER.parseProgram("+");
 
         assertCommandList(Collections.singletonList(new IncrementCommand()), commands);
+    }
+    @Test
+    public void testAnalyseDecrementCommand() {
+
+        final List<Command> commands = ANALYSER.parseProgram("-");
+
+        assertCommandList(Collections.singletonList(new DecrementCommand()), commands);
+    }
+    @Test
+    public void testAnalysePrintCommand() {
+
+        final List<Command> commands = ANALYSER.parseProgram("..");
+
+        assertCommandList(Arrays.asList(new PrintCommand(), new PrintCommand()), commands);
+    }
+    @Test
+    public void testAnalyseMovePointerToRightCommand() {
+
+        final List<Command> commands = ANALYSER.parseProgram(">>");
+
+        assertCommandList(Arrays.asList(new MovePointerRightCommand(), new MovePointerRightCommand()), commands);
+    }
+    @Test
+    public void testAnalyseMovePointerToLeftCommand() {
+
+        final List<Command> commands = ANALYSER.parseProgram("<<");
+
+        assertCommandList(Arrays.asList(new MovePointerLeftCommand(), new MovePointerLeftCommand()), commands);
     }
 
     @Test
@@ -44,9 +71,9 @@ public class AnalyserTest {
 
     private void assertCommandList(List<Command> expectedCommands, List<Command> actualCommands) {
 
-        Assert.assertEquals("", expectedCommands.size(), actualCommands.size());
+        Assert.assertEquals("Compared lists have different size!", expectedCommands.size(), actualCommands.size());
 
-        Assert.assertEquals("", expectedCommands, actualCommands);
+        Assert.assertEquals("Compared lists are not equals!", expectedCommands, actualCommands);
 
     }
 
