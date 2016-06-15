@@ -10,22 +10,20 @@ public class JavaScriptFileGenerator {
 
     public static void main(String[] args) {
 
-        FileGeneratorUtils utils = new FileGeneratorUtils();
-
-        final Configuration configuration = utils.getConfiguration("src/main/resources/templates");
-
         final String helloWorld = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]" +
                 ">>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
 
-        final  JavaScriptCodeGenerator generator = new JavaScriptCodeGenerator();
-        final String generatedCode = utils.analyzeText(generator, helloWorld);
+        final String templateName = "jstemplate.ftl";
+        final String fileDir = "src/main/resources/hello.html";
+
+        final FileGeneratorUtils utils = new FileGeneratorUtils();
+
+        final Configuration configuration = utils.getConfiguration("src/main/resources/templates");
+
+        final String generatedCode = utils.analyzeText(new JavaScriptCodeGenerator(), helloWorld);
 
         final Map<String, String> templateDataMap = new HashMap<>();
         templateDataMap.put("function", generatedCode);
-
-        final String templateName = "jstemplate.ftl";
-        final String fileDir =
-                "src/main/resources/hello.html";
 
         utils.createFile(configuration, templateDataMap, fileDir, templateName);
     }

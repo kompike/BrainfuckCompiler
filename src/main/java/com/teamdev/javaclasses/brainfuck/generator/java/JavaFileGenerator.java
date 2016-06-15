@@ -10,23 +10,22 @@ public class JavaFileGenerator {
 
     public static void main(String[] args) {
 
-        FileGeneratorUtils utils = new FileGeneratorUtils();
-
-        final Configuration configuration = utils.getConfiguration("src/main/resources/templates");
-
         final String helloWorld = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]" +
                 ">>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
-
-        final JavaCodeGenerator generator = new JavaCodeGenerator();
-        final String generatedCode = utils.analyzeText(generator, helloWorld);
-
-        final Map<String, String> templateDataMap = new HashMap<>();
-        templateDataMap.put("package", "package com.teamdev.javaclasses.brainfuck.generator;");
-        templateDataMap.put("generatedCode", generatedCode);
 
         final String templateName = "javatemplate.ftl";
         final String fileDir =
                 "src/main/java/com/teamdev/javaclasses/brainfuck/generator/java/JavaBrainfuckTranslator.java";
+
+        final FileGeneratorUtils utils = new FileGeneratorUtils();
+
+        final Configuration configuration = utils.getConfiguration("src/main/resources/templates");
+
+        final String generatedCode = utils.analyzeText(new JavaCodeGenerator(), helloWorld);
+
+        final Map<String, String> templateDataMap = new HashMap<>();
+        templateDataMap.put("package", "package com.teamdev.javaclasses.brainfuck.generator;");
+        templateDataMap.put("generatedCode", generatedCode);
 
         utils.createFile(configuration, templateDataMap, fileDir, templateName);
     }
