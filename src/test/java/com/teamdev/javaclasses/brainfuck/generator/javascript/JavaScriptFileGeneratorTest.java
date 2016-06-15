@@ -58,5 +58,7 @@ public class JavaScriptFileGeneratorTest {
             assertEquals("Compared files do not match!", expectedLine, actualReader.readLine());
         }
 
+        assertNull("Actual file has lines!", actualReader.readLine());
+
     }
 }
