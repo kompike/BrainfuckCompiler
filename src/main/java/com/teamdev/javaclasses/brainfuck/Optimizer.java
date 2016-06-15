@@ -37,10 +37,6 @@ public class Optimizer implements CommandVisitor {
 
     private void visitCommand(AbstractCommand currentCommand) {
 
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Checking if commands list is empty");
-        }
-
         if (!optimizedCommands.isEmpty()) {
 
             final AbstractCommand lastCommand = (AbstractCommand)
@@ -48,8 +44,8 @@ public class Optimizer implements CommandVisitor {
 
             if (currentCommand.getClass().equals(lastCommand.getClass())) {
 
-                if (LOGGER.isInfoEnabled()) {
-                    LOGGER.info("Optimizing current command: " + currentCommand.getClass());
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.debug("Current command value: " + currentCommand.getValue());
                 }
 
                 lastCommand.setValue(lastCommand.getValue() + 1);
@@ -58,8 +54,8 @@ public class Optimizer implements CommandVisitor {
             }
         }
 
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Command optimization ended: " + currentCommand.getClass());
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Command optimization ended: " + currentCommand.getClass());
         }
 
         optimizedCommands.add(currentCommand);
@@ -93,8 +89,8 @@ public class Optimizer implements CommandVisitor {
     @Override
     public void visit(LoopCommand command) {
 
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Adding new LoopCommand to the list");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Adding new LoopCommand to the list");
         }
 
         optimizedCommands.add(command);
@@ -103,8 +99,8 @@ public class Optimizer implements CommandVisitor {
 
         optimizedCommands = new ArrayList<>();
 
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Optimizing commands in the loop");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Optimizing commands in the loop");
         }
 
         for (Command innerCommand: command.getCommands()) {
@@ -115,8 +111,8 @@ public class Optimizer implements CommandVisitor {
 
         optimizedCommands = justToKeep;
 
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("LoopCommand optimization ended");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("LoopCommand optimization ended");
         }
 
     }

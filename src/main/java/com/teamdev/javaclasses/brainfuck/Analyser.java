@@ -26,8 +26,8 @@ public class Analyser {
 
             for (char commandSymbol : program.toCharArray()) {
 
-                if (LOGGER.isInfoEnabled()) {
-                    LOGGER.info("Analysing symbol: " + commandSymbol);
+                if (LOGGER.isDebugEnabled()) {
+                    LOGGER.debug("Analysing symbol: " + commandSymbol);
                 }
 
                 switch (commandSymbol) {

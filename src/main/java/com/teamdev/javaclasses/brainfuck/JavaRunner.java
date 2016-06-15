@@ -79,16 +79,16 @@ public class JavaRunner implements CommandVisitor {
     public void visit(LoopCommand command) {
         while (memory.getCurrentCellValue() > 0) {
 
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Running commands in the loop");
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("Running commands in the loop");
             }
 
             for (Command innerCommand : command.getCommands()) {
                 innerCommand.accept(this);
             }
 
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("LoopCommand executing ended");
+            if (LOGGER.isDebugEnabled()) {
+                LOGGER.debug("LoopCommand executing ended");
             }
         }
     }

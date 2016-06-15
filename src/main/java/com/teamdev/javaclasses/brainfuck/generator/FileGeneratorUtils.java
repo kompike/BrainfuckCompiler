@@ -17,9 +17,9 @@ import java.io.Writer;
 import java.util.List;
 import java.util.Map;
 
-public class TemplateGeneratorUtils {
+public class FileGeneratorUtils {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TemplateGeneratorUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileGeneratorUtils.class);
 
     public Writer createFile(Configuration configuration, Map<String, String> map, String fileDir, String templateName) {
 

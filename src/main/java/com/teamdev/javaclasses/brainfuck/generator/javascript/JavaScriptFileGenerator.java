@@ -1,16 +1,16 @@
 package com.teamdev.javaclasses.brainfuck.generator.javascript;
 
-import com.teamdev.javaclasses.brainfuck.generator.TemplateGeneratorUtils;
+import com.teamdev.javaclasses.brainfuck.generator.FileGeneratorUtils;
 import freemarker.template.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class JavaScriptTemplateGenerator {
+public class JavaScriptFileGenerator {
 
     public static void main(String[] args) {
 
-        TemplateGeneratorUtils utils = new TemplateGeneratorUtils();
+        FileGeneratorUtils utils = new FileGeneratorUtils();
 
         final Configuration configuration = utils.getConfiguration("src/main/resources/templates");
 

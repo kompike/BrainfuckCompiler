@@ -1,48 +1,46 @@
-package com.teamdev.javaclasses.brainfuck.generator.javascript;
+package com.teamdev.javaclasses.brainfuck.generator.java;
 
-import com.teamdev.javaclasses.brainfuck.generator.TemplateGeneratorUtils;
+import com.teamdev.javaclasses.brainfuck.generator.FileGeneratorUtils;
 import freemarker.template.Configuration;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class JavaScriptTemplateGeneratorTest {
+public class JavaFileGeneratorTest {
 
     @Test
-    public void testJavaScriptTemplateCreation() throws Exception {
+    public void testJavaTemplateCreation() throws Exception {
 
         createActualFile();
 
-        File expected = new File("src/test/resources/templates/JavaScriptBrainfuckTemplate.html");
-        File actual = new File("src/test/resources/JavaScriptBrainfuckTemplate.html");
+        File expected = new File("src/test/resources/templates/JavaBrainfuckTemplate.java");
+        File actual = new File("src/test/resources/JavaBrainfuckTemplate.java");
 
         assertFiles(expected, actual);
     }
 
     private void createActualFile() {
-        TemplateGeneratorUtils utils = new TemplateGeneratorUtils();
+        FileGeneratorUtils utils = new FileGeneratorUtils();
 
         final Configuration configuration = utils.getConfiguration("src/main/resources/templates");
 
         final String helloWorld = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]" +
                 ">>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
 
-        final JavaScriptCodeGenerator generator = new JavaScriptCodeGenerator();
+        final JavaCodeGenerator generator = new JavaCodeGenerator();
         final String generatedCode = utils.analyzeText(generator, helloWorld);
 
         final Map<String, String> templateDataMap = new HashMap<>();
-        templateDataMap.put("function", generatedCode);
+        templateDataMap.put("package", "package templates;");
+        templateDataMap.put("generatedCode", generatedCode);
 
-        final String templateName = "jstemplate.ftl";
+        final String templateName = "javatemplate.ftl";
         final String fileDir =
-                "src/test/resources/JavaScriptBrainfuckTemplate.html";
+                "src/test/resources/JavaBrainfuckTemplate.java";
 
         utils.createFile(configuration, templateDataMap, fileDir, templateName);
     }

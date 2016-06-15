@@ -1,32 +1,32 @@
-package com.teamdev.javaclasses.brainfuck.generator.java;
+package com.teamdev.javaclasses.brainfuck.generator.groovy;
 
-import com.teamdev.javaclasses.brainfuck.generator.TemplateGeneratorUtils;
+import com.teamdev.javaclasses.brainfuck.generator.FileGeneratorUtils;
 import freemarker.template.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class JavaTemplateGenerator {
+public class GroovyFileGenerator {
 
     public static void main(String[] args) {
 
-        TemplateGeneratorUtils utils = new TemplateGeneratorUtils();
+        FileGeneratorUtils utils = new FileGeneratorUtils();
 
         final Configuration configuration = utils.getConfiguration("src/main/resources/templates");
 
         final String helloWorld = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]" +
                 ">>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
 
-        final JavaCodeGenerator generator = new JavaCodeGenerator();
+        final GroovyCodeGenerator generator = new GroovyCodeGenerator();
         final String generatedCode = utils.analyzeText(generator, helloWorld);
 
         final Map<String, String> templateDataMap = new HashMap<>();
-        templateDataMap.put("package", "package com.teamdev.javaclasses.brainfuck.generator;");
+        templateDataMap.put("package", "package com.teamdev.javaclasses.brainfuck.generator.groovy;");
         templateDataMap.put("generatedCode", generatedCode);
 
-        final String templateName = "javatemplate.ftl";
+        final String templateName = "groovytemplate.ftl";
         final String fileDir =
-                "src/main/java/com/teamdev/javaclasses/brainfuck/generator/java/JavaBrainfuckTranslator.java";
+                "src/main/java/com/teamdev/javaclasses/brainfuck/generator/groovy/GroovyBrainfuckTranslator.groovy";
 
         utils.createFile(configuration, templateDataMap, fileDir, templateName);
     }
