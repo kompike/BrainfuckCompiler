@@ -40,7 +40,7 @@ class GroovyBrainfuckTranslator {
 	pointer--
 	pointer--
 	memory[pointer]--
-}
+	}
 	pointer++
 	memory[pointer]++
 	pointer++
@@ -52,10 +52,10 @@ class GroovyBrainfuckTranslator {
 	memory[pointer]++
 	while(memory[pointer] > 0) {
 	pointer--
-}
+	}
 	pointer--
 	memory[pointer]--
-}
+	}
 	pointer++
 	pointer++
 	print ((char) memory[pointer])

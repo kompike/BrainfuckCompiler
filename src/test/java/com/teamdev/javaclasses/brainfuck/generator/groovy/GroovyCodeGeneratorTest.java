@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 public class GroovyCodeGeneratorTest {
 
     private final GroovyCodeGenerator generator = new GroovyCodeGenerator();
+    private final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     @Test
     public void testIncrementCommandGenerator() {
@@ -20,7 +21,7 @@ public class GroovyCodeGeneratorTest {
         commands.add(new IncrementCommand());
 
         assertEquals("Obtain text value does not equals 'memory[pointer]++'",
-                "\tmemory[pointer]++\n", generator.execute(commands));
+                "\tmemory[pointer]++" + LINE_SEPARATOR, generator.execute(commands));
     }
 
     @Test
@@ -30,7 +31,7 @@ public class GroovyCodeGeneratorTest {
         commands.add(new DecrementCommand());
 
         assertEquals("Obtain text value does not equals 'memory[pointer]--'",
-                "\tmemory[pointer]--\n", generator.execute(commands));
+                "\tmemory[pointer]--" + LINE_SEPARATOR, generator.execute(commands));
     }
 
     @Test
@@ -40,7 +41,7 @@ public class GroovyCodeGeneratorTest {
         commands.add(new PrintCommand());
 
         assertEquals("Obtain text value does not equals 'print ((char) memory[pointer])'",
-                "\tprint ((char) memory[pointer])\n", generator.execute(commands));
+                "\tprint ((char) memory[pointer])" + LINE_SEPARATOR, generator.execute(commands));
     }
 
     @Test
@@ -50,7 +51,7 @@ public class GroovyCodeGeneratorTest {
         commands.add(new MovePointerRightCommand());
 
         assertEquals("Obtain text value does not equals 'pointer++'",
-                "\tpointer++\n", generator.execute(commands));
+                "\tpointer++" + LINE_SEPARATOR, generator.execute(commands));
     }
 
     @Test
@@ -60,7 +61,7 @@ public class GroovyCodeGeneratorTest {
         commands.add(new MovePointerLeftCommand());
 
         assertEquals("Obtain text value does not equals 'pointer--'",
-                "\tpointer--\n", generator.execute(commands));
+                "\tpointer--" + LINE_SEPARATOR, generator.execute(commands));
     }
 
     @Test
@@ -73,7 +74,8 @@ public class GroovyCodeGeneratorTest {
         loopCommands.add(new LoopCommand(commands));
 
         assertEquals("Obtain text value does not equals 'while(memory[pointer] > 0) {pointer++}'",
-                "\twhile(memory[pointer] > 0) {\n\tpointer++\n}\n", generator.execute(loopCommands));
+                "\twhile(memory[pointer] > 0) {" + LINE_SEPARATOR + "\tpointer++" + LINE_SEPARATOR + "\t}"
+                        + LINE_SEPARATOR, generator.execute(loopCommands));
     }
 
 

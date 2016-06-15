@@ -11,7 +11,7 @@ public class JavaBrainfuckTranslator {
     }
 
     public static void main(String[] args) {
-        JavaBrainfuckGenerator javaBrainfuckGenerator = new JavaBrainfuckGenerator();
-        javaBrainfuckGenerator.execute();
+		JavaBrainfuckTranslator javaBrainfuckTranslator = new JavaBrainfuckTranslator();
+        javaBrainfuckTranslator.execute();
     }
 }

@@ -49,7 +49,7 @@ public class FileGeneratorUtils {
         }
 
         if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("File creation ended");
+            LOGGER.info("File creation ended: " + fileDir);
         }
 
         return file;

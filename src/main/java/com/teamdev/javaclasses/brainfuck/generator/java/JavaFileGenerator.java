@@ -15,7 +15,7 @@ public class JavaFileGenerator {
 
         final String templateName = "javatemplate.ftl";
         final String fileDir =
-                "src/main/java/com/teamdev/javaclasses/brainfuck/generator/java/JavaBrainfuckTranslator.java";
+                "src/main/java/com/teamdev/javaclasses/brainfuck/generator/java/JavaBrainfuckTemplate.java";
 
         final FileGeneratorUtils utils = new FileGeneratorUtils();
 

@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 public class JavaScriptCodeGeneratorTest {
 
     private final JavaScriptCodeGenerator generator = new JavaScriptCodeGenerator();
+    private final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     @Test
     public void testIncrementCommandGenerator() {
@@ -20,7 +21,7 @@ public class JavaScriptCodeGeneratorTest {
         commands.add(new IncrementCommand());
 
         assertEquals("Obtain text value does not equals 'memory[pointer]++;'",
-                "\tmemory[pointer]++;\n", generator.execute(commands));
+                "\tmemory[pointer]++;" + LINE_SEPARATOR, generator.execute(commands));
     }
 
     @Test
@@ -30,7 +31,7 @@ public class JavaScriptCodeGeneratorTest {
         commands.add(new DecrementCommand());
 
         assertEquals("Obtain text value does not equals 'memory[pointer]--;'",
-                "\tmemory[pointer]--;\n", generator.execute(commands));
+                "\tmemory[pointer]--;" + LINE_SEPARATOR, generator.execute(commands));
     }
 
     @Test
@@ -40,7 +41,7 @@ public class JavaScriptCodeGeneratorTest {
         commands.add(new PrintCommand());
 
         assertEquals("Obtain text value does not equals 'result += String.fromCharCode(memory[pointer]);'",
-                "\tresult += String.fromCharCode(memory[pointer]);\n", generator.execute(commands));
+                "\tresult += String.fromCharCode(memory[pointer]);" + LINE_SEPARATOR, generator.execute(commands));
     }
 
     @Test
@@ -49,7 +50,7 @@ public class JavaScriptCodeGeneratorTest {
         final List<Command> commands = new ArrayList<>();
         commands.add(new MovePointerRightCommand());
 
-        assertEquals("Obtain text value does not equals 'pointer++;'", "\tpointer++;\n",
+        assertEquals("Obtain text value does not equals 'pointer++;'", "\tpointer++;" + LINE_SEPARATOR,
                 generator.execute(commands));
     }
 
@@ -60,7 +61,7 @@ public class JavaScriptCodeGeneratorTest {
         commands.add(new MovePointerLeftCommand());
 
         assertEquals("Obtain text value does not equals 'pointer--;'",
-                "\tpointer--;\n", generator.execute(commands));
+                "\tpointer--;" + LINE_SEPARATOR, generator.execute(commands));
     }
 
     @Test
@@ -73,7 +74,8 @@ public class JavaScriptCodeGeneratorTest {
         loopCommands.add(new LoopCommand(commands));
 
         assertEquals("Obtain text value does not equals 'while(memory[pointer] > 0) {pointer++;}'",
-                "\twhile(memory[pointer] > 0) {\n\tpointer++;\n}\n", generator.execute(loopCommands));
+                "\twhile(memory[pointer] > 0) {" + LINE_SEPARATOR + "\tpointer++;" + LINE_SEPARATOR +"\t}"
+                        + LINE_SEPARATOR, generator.execute(loopCommands));
     }
 
 

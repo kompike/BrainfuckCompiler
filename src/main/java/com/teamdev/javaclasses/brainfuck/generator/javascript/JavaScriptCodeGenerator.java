@@ -13,6 +13,7 @@ public class JavaScriptCodeGenerator implements CodeGenerator {
     private static final Logger LOGGER = LoggerFactory.getLogger(JavaScriptCodeGenerator.class);
 
     private StringBuilder builder = new StringBuilder("");
+    private final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     @Override
     public String execute(List<Command> commands) {
@@ -40,48 +41,55 @@ public class JavaScriptCodeGenerator implements CodeGenerator {
     @Override
     public void visit(IncrementCommand command) {
         for (int i = 0; i < command.getValue(); i++) {
-            builder.append("\tmemory[pointer]++;\n");
+            builder.append("\tmemory[pointer]++;");
+            builder.append(LINE_SEPARATOR);
         }
     }
 
     @Override
     public void visit(DecrementCommand command) {
         for (int i = 0; i < command.getValue(); i++) {
-            builder.append("\tmemory[pointer]--;\n");
+            builder.append("\tmemory[pointer]--;");
+            builder.append(LINE_SEPARATOR);
         }
     }
 
     @Override
     public void visit(PrintCommand command) {
         for (int i = 0; i < command.getValue(); i++) {
-            builder.append("\tresult += String.fromCharCode(memory[pointer]);\n");
+            builder.append("\tresult += String.fromCharCode(memory[pointer]);");
+            builder.append(LINE_SEPARATOR);
         }
     }
 
     @Override
     public void visit(MovePointerRightCommand command) {
         for (int i = 0; i < command.getValue(); i++) {
-            builder.append("\tpointer++;\n");
+            builder.append("\tpointer++;");
+            builder.append(LINE_SEPARATOR);
         }
     }
 
     @Override
     public void visit(MovePointerLeftCommand command) {
         for (int i = 0; i < command.getValue(); i++) {
-            builder.append("\tpointer--;\n");
+            builder.append("\tpointer--;");
+            builder.append(LINE_SEPARATOR);
         }
     }
 
     @Override
     public void visit(LoopCommand command) {
-        final String methodStart = "\twhile(memory[pointer] > 0) {\n";
+        final String methodStart = "\twhile(memory[pointer] > 0) {";
         builder.append(methodStart);
+        builder.append(LINE_SEPARATOR);
         for (Command innerCommand : command.getCommands()) {
             innerCommand.accept(this);
         }
 
-        final String methodEnd = "}\n";
+        final String methodEnd = "\t}";
         builder.append(methodEnd);
+        builder.append(LINE_SEPARATOR);
     }
 }
 

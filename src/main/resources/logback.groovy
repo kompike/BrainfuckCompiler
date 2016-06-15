@@ -24,5 +24,5 @@ appender("FILE", FileAppender) {
     }
 }
 
-logger("com.teamdev.javaclasses.brainfuck", DEBUG, ["STDOUT", "FILE"])
+logger("com.teamdev.javaclasses.brainfuck", ERROR, ["STDOUT", "FILE"])
 root(ERROR, ["STDOUT"])

@@ -40,7 +40,7 @@ public class JavaBrainfuckTranslator {
 	pointer--;
 	pointer--;
 	memory[pointer]--;
-}
+	}
 	pointer++;
 	memory[pointer]++;
 	pointer++;
@@ -52,10 +52,10 @@ public class JavaBrainfuckTranslator {
 	memory[pointer]++;
 	while(memory[pointer] > 0) {
 	pointer--;
-}
+	}
 	pointer--;
 	memory[pointer]--;
-}
+	}
 	pointer++;
 	pointer++;
 	System.out.print((char) memory[pointer]);
@@ -117,7 +117,7 @@ public class JavaBrainfuckTranslator {
     }
 
     public static void main(String[] args) {
-        JavaBrainfuckGenerator javaBrainfuckGenerator = new JavaBrainfuckGenerator();
-        javaBrainfuckGenerator.execute();
+		JavaBrainfuckTranslator javaBrainfuckTranslator = new JavaBrainfuckTranslator();
+        javaBrainfuckTranslator.execute();
     }
 }

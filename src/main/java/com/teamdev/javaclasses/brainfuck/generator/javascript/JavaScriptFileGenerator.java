@@ -14,7 +14,7 @@ public class JavaScriptFileGenerator {
                 ">>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
 
         final String templateName = "jstemplate.ftl";
-        final String fileDir = "src/main/resources/hello.html";
+        final String fileDir = "src/main/resources/JavaScriptBrainfuckTemplate.html";
 
         final FileGeneratorUtils utils = new FileGeneratorUtils();
 

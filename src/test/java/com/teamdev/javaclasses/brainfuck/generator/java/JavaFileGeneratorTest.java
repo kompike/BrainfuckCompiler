@@ -17,8 +17,8 @@ public class JavaFileGeneratorTest {
 
         createActualFile();
 
-        File expected = new File("src/test/resources/templates/JavaBrainfuckTemplate.java");
-        File actual = new File("src/test/resources/JavaBrainfuckTemplate.java");
+        File expected = new File("src/test/resources/templates/JavaBrainfuckTranslator.java");
+        File actual = new File("src/test/resources/JavaBrainfuckTranslator.java");
 
         assertFiles(expected, actual);
     }
@@ -40,7 +40,7 @@ public class JavaFileGeneratorTest {
 
         final String templateName = "javatemplate.ftl";
         final String fileDir =
-                "src/test/resources/JavaBrainfuckTemplate.java";
+                "src/test/resources/JavaBrainfuckTranslator.java";
 
         utils.createFile(configuration, templateDataMap, fileDir, templateName);
     }
